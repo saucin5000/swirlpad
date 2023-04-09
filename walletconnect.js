@@ -6,18 +6,27 @@ const ethBalanceElement = document.getElementById('eth-balance');
 const pulseBalanceElement = document.getElementById('pulse-balance');
 const walletAddressElement = document.getElementById('wallet-address');
 
+// Initialize the Web3Modal instance
+const web3Modal = new Web3Modal({
+  cacheProvider: true,
+  providerOptions: {
+    walletconnect: {
+      package: WalletConnectProvider,
+      options: {
+        rpc: {
+          1: 'https://mainnet.infura.io/v3/your-project-id',
+          100: 'https://rpc.pulsechain.com/'
+        }
+      }
+    }
+  }
+});
+
 // Add a click event listener to the button
 connectButton.addEventListener('click', async () => {
   // Initialize the WalletConnect provider
-  const provider = new WalletConnectProvider.default({
-    rpc: {
-      1: 'https://mainnet.infura.io/v3/your-project-id',
-      100: 'https://rpc.pulsechain.com/'
-    }
-  });
+  const provider = await web3Modal.connect();
 
-  // Enable the provider
-  await provider.enable();
 
   // Create a new web3 instance using the provider
   const web3 = new Web3(provider);
