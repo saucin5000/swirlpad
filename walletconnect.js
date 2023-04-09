@@ -6,6 +6,10 @@ const ethBalanceElement = document.getElementById('eth-balance');
 const pulseBalanceElement = document.getElementById('pulse-balance');
 const walletAddressElement = document.getElementById('wallet-address');
 
+ // Unpkg imports
+const Web3Modal = window.Web3Modal.default;
+const WalletConnectProvider = window.WalletConnectProvider.default;
+
 // Initialize the Web3Modal instance
 const web3Modal = new Web3Modal({
   cacheProvider: true,
