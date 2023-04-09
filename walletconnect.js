@@ -4,7 +4,7 @@ const connectButton = document.getElementById('connect-button');
 // Add a click event listener to the button
 connectButton.addEventListener('click', async () => {
   // Initialize the WalletConnect provider
-  const provider = new WalletConnectProvider({
+  const provider = new WalletConnectProvider.default({
     rpc: {
       1: 'https://mainnet.infura.io/v3/your-project-id',
       100: 'https://rpc.pulsechain.com/'
