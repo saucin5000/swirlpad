@@ -23,10 +23,6 @@ connectButton.addEventListener('click', async () => {
   const web3 = new Web3(provider);
 
   // Use web3 to interact with the blockchain
-  // ...
-
-  // Create a new web3 instance using the provider
-  const web3 = new Web3(provider);
 
   // Get the connected wallet address
   const accounts = await web3.eth.getAccounts();
