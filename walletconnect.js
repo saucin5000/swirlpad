@@ -1,6 +1,11 @@
 // Get the connect button element
 const connectButton = document.getElementById('connect-button');
 
+// Get the balance elements
+const ethBalanceElement = document.getElementById('eth-balance');
+const pulseBalanceElement = document.getElementById('pulse-balance');
+const walletAddressElement = document.getElementById('wallet-address');
+
 // Add a click event listener to the button
 connectButton.addEventListener('click', async () => {
   // Initialize the WalletConnect provider
@@ -19,6 +24,24 @@ connectButton.addEventListener('click', async () => {
 
   // Use web3 to interact with the blockchain
   // ...
+
+  // Create a new web3 instance using the provider
+  const web3 = new Web3(provider);
+
+  // Get the connected wallet address
+  const accounts = await web3.eth.getAccounts();
+  const address = accounts[0];
+  walletAddressElement.textContent = address;
+
+  // Get the Ethereum balance of the connected wallet
+  const ethBalance = await web3.eth.getBalance(address);
+  ethBalanceElement.textContent = web3.utils.fromWei(ethBalance, 'ether');
+
+  // Get the Pulse balance of the connected wallet
+  const pulseContractAddress = '0x7c41e0668a3a38d3b8c830c1fca4fc6f06fba17d';
+  const pulseContract = new web3.eth.Contract(ERC20ABI, pulseContractAddress);
+  const pulseBalance = await pulseContract.methods.balanceOf(address).call();
+  pulseBalanceElement.textContent = web3.utils.fromWei(pulseBalance, 'ether');
 
   // Close the modal
   document.querySelector('.modal').classList.remove('is-active');
@@ -47,3 +70,40 @@ if (modalClose) {
   });
 }
 }
+
+
+// Ethereum ERC20 ABI
+const ERC20ABI = [
+  {
+    "inputs": [],
+    "name": "decimals",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_owner",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "balance",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+];
