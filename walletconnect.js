@@ -27,6 +27,15 @@ connectButton.addEventListener('click', async () => {
 // Get the modal element
 const modal = document.querySelector('.modal');
 
+
+
+// Open the modal when the connect button is clicked
+connectButton.addEventListener('click', () => {
+  // Open the modal
+  modal.classList.add('is-active');
+});
+
+function closeModal() {
 const modalClose = modal.querySelector('.modal-close');
 
 if (modalClose) {
@@ -37,9 +46,4 @@ if (modalClose) {
     modal.classList.remove('is-active');
   });
 }
-
-// Open the modal when the connect button is clicked
-connectButton.addEventListener('click', () => {
-  // Open the modal
-  modal.classList.add('is-active');
-});
+}
