@@ -4,7 +4,7 @@ const connectButton = document.getElementById('connect-button');
 // disconnect button
 
 const disconnectButton = document.createElement("button");
-disconnectButton.classList.add(Array.from(connectButton.classList));
+disconnectButton.classList.add(...Array.from(connectButton.classList));
 disconnectButton.style.display = 'none';
 disconnectButton.style.borderColor = 'red';
 disconnectButton.style.color = 'red';
