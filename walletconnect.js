@@ -1,6 +1,9 @@
 // Get the connect button element
 const connectButton = document.getElementById('connect-button');
 
+// disconnect button
+const disconnectButton = document.getElementById('disconnect-button')
+
 // Get the balance elements
 const ethBalanceElement = document.getElementById('eth-balance');
 const pulseBalanceElement = document.getElementById('pulse-balance');
@@ -26,6 +29,12 @@ const web3Modal = new Web3Modal({
   }
 });
 
+disconnectButton.addEventListener("click", () => {
+  connectButton.textContent = "Wallet Connect";
+  disconnectButton.style.display = 'none';
+  
+})
+
 // Add a click event listener to the button
 connectButton.addEventListener('click', async () => {
   // Initialize the WalletConnect provider
@@ -44,13 +53,15 @@ connectButton.addEventListener('click', async () => {
 
   // Get the Ethereum balance of the connected wallet
   const ethBalance = await web3.eth.getBalance(address);
-  ethBalanceElement.textContent = parseFloat(web3.utils.fromWei(ethBalance, 'ether')).toFixed(2);
+  //ethBalanceElement.textContent = parseFloat(web3.utils.fromWei(ethBalance, 'ether')).toFixed(2);
 
   // Get the Pulse balance of the connected wallet
   const pulseContractAddress = '0x7c41e0668a3a38d3b8c830c1fca4fc6f06fba17d';
   const pulseContract = new web3.eth.Contract(ERC20ABI, pulseContractAddress);
   const pulseBalance = await pulseContract.methods.balanceOf(address).call();
-  pulseBalanceElement.textContent = web3.utils.fromWei(pulseBalance, 'ether');
+  //pulseBalanceElement.textContent = web3.utils.fromWei(pulseBalance, 'ether');
+ 
+   disconnectButton.style.display = 'block';
 
   // Close the modal
   document.querySelector('.modal').classList.remove('is-active');
