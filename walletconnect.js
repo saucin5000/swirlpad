@@ -2,7 +2,16 @@
 const connectButton = document.getElementById('connect-button');
 
 // disconnect button
-let disconnectButton;
+
+const disconnectButton = document.createElement("button");
+disconnectButton.classList.add(connectButton.classList);
+disconnectButton.style.display = 'none';
+connectButton.parent.appendChild(disconnectButton);
+
+disconnectButton.addEventListener("click", () => {
+  connectButton.textContent = "Wallet Connect";
+  disconnectButton.style.display = 'none';
+});
 
 // Get the balance elements
 const ethBalanceElement = document.getElementById('eth-balance');
@@ -29,16 +38,6 @@ const web3Modal = new Web3Modal({
   }
 });
 
-const disconnectButton = document.createElement("button");
-disconnectButton.classList.add(connectButton.classList);
-disconnectButton.style.display = 'none';
-connectButton.parent.appendChild(disconnectButton);
-
-disconnectButton.addEventListener("click", () => {
-  connectButton.textContent = "Wallet Connect";
-  disconnectButton.style.display = 'none';
-  
-})
 
 // Add a click event listener to the button
 connectButton.addEventListener('click', async () => {
