@@ -6,7 +6,10 @@ const connectButton = document.getElementById('connect-button');
 const disconnectButton = document.createElement("button");
 disconnectButton.classList.add(Array.from(connectButton.classList));
 disconnectButton.style.display = 'none';
-connectButton.parent.appendChild(disconnectButton);
+disconnectButton.style.borderColor = 'red';
+disconnectButton.style.color = 'red';
+disconnectButton.textContent = 'Disconnect';
+connectButton.parentElement.appendChild(disconnectButton);
 
 disconnectButton.addEventListener("click", () => {
   connectButton.textContent = "Wallet Connect";
