@@ -4,7 +4,7 @@ const connectButton = document.getElementById('connect-button');
 // disconnect button
 
 const disconnectButton = document.createElement("button");
-disconnectButton.classList.add(connectButton.classList.split(' '));
+disconnectButton.classList.add(Array.from(connectButton.classList));
 disconnectButton.style.display = 'none';
 connectButton.parent.appendChild(disconnectButton);
 
