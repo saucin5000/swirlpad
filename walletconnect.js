@@ -40,11 +40,11 @@ connectButton.addEventListener('click', async () => {
   // Get the connected wallet address
   const accounts = await web3.eth.getAccounts();
   const address = accounts[0];
-  walletAddressElement.textContent = address;
+  connectButton.textContent = address.substring(0,4) + '...' + address.substring(address.length - 5, address.length - 1);
 
   // Get the Ethereum balance of the connected wallet
   const ethBalance = await web3.eth.getBalance(address);
-  ethBalanceElement.textContent = web3.utils.fromWei(ethBalance, 'ether');
+  ethBalanceElement.textContent = parseFloat(web3.utils.fromWei(ethBalance, 'ether')).toFixed(2);
 
   // Get the Pulse balance of the connected wallet
   const pulseContractAddress = '0x7c41e0668a3a38d3b8c830c1fca4fc6f06fba17d';
