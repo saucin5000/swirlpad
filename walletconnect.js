@@ -63,9 +63,7 @@ connectButton.addEventListener('click', async () => {
   //ethBalanceElement.textContent = parseFloat(web3.utils.fromWei(ethBalance, 'ether')).toFixed(2);
 
   // Get the Pulse balance of the connected wallet
-  const pulseContractAddress = '0x7c41e0668a3a38d3b8c830c1fca4fc6f06fba17d';
-  const pulseContract = new web3.eth.Contract(ERC20ABI, pulseContractAddress);
-  const pulseBalance = await pulseContract.methods.balanceOf(address).call();
+ 
   //pulseBalanceElement.textContent = web3.utils.fromWei(pulseBalance, 'ether');
  
    disconnectButton.style.display = 'block';
